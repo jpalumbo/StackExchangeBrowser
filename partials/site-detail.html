@@ -1,0 +1,137 @@
+﻿<div class="container-fluid">
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span12">
+				<br/>
+				<img ng-src="{{currentSite.logo_url}}" alt="{{currentSite.name}}"/>
+				<hr/>
+				<a href="#/"><i class="icon-chevron-left"></i>Back to Sites</a>
+
+				<div class="row-fluid">
+					<div class="span7">
+						<div ng-repeat="question in questions">
+							<h4 ng-class="{'answered':question.is_answered, 'unanswered':!question.is_answered}">
+							    <a href="#/site/{{siteName}}/question/{{question.question_id}}">
+									<span ng-switch on="question.is_answered">
+									<i ng-switch-when="true" class="icon-ok"></i>
+								</span>
+								<span ng-bind-html-unsafe="question.title">{{question.title}}</span>
+								</a>
+							</h4>
+
+							<p>
+								<strong>asker:</strong> {{question.owner.display_name}}
+								{{formatDate(question.creation_date)}}
+							</p>
+
+							<p>
+								<span class="label label-info" ng-repeat="tag in question.tags"
+									  style="margin-right: 5px;" ng-click="addTag(tag)"><i
+										class="icon-tag icon-white"> </i> {{tag}}</span></a>
+							</p>
+							<hr/>
+						</div>
+
+					</div>
+					<div class="span5">
+						<div style=" padding: 1em">
+							<h4>{{currentSite.name}} Statistics</h4>
+
+							<div class="row-fluid">
+								<div class="span8">
+									<strong>Total Questions:</strong>
+								</div>
+								<div class="span4">
+									{{currentSiteInfo.total_questions}}
+								</div>
+							</div>
+							<div class="row-fluid">
+								<div class="span8">
+									<strong>Total Unanswered:</strong>
+
+								</div>
+								<div class="span4">
+									{{currentSiteInfo.total_unanswered}}
+								</div>
+							</div>
+							<div class="row-fluid">
+								<div class="span8">
+									<strong>Total Accepted Answers:</strong>
+								</div>
+								<div class="span4">
+									{{currentSiteInfo.total_accepted}}
+								</div>
+							</div>
+							<div class="row-fluid">
+								<div class="span8">
+									<strong>Total Accepted Answers:</strong>
+								</div>
+								<div class="span4">
+									{{currentSiteInfo.total_accepted}}
+								</div>
+							</div>
+							<div class="row-fluid">
+								<div class="span8">
+									<strong>Total Answers:</strong>
+								</div>
+								<div class="span4">
+									{{currentSiteInfo.total_answers}}
+								</div>
+							</div>
+							<div class="row-fluid">
+								<div class="span8">
+									<strong>Average Questions Per Minute:</strong>
+								</div>
+								<div class="span4">
+									{{currentSiteInfo.questions_per_minute}}
+								</div>
+							</div>
+							<div class="row-fluid">
+								<div class="span8">
+									<strong>Average Answers Per Minute:</strong>
+								</div>
+								<div class="span4">
+									{{currentSiteInfo.answers_per_minute}}
+								</div>
+							</div>
+							<div class="row-fluid">
+								<div class="span8">
+									<strong>Total Votes:</strong>
+								</div>
+								<div class="span4">
+									{{currentSiteInfo.total_votes}}
+								</div>
+							</div>
+							<div class="row-fluid">
+								<div class="span8">
+									<strong>Total Badges:</strong>
+								</div>
+								<div class="span4">
+									{{currentSiteInfo.total_badges}}
+								</div>
+							</div>
+							<div class="row-fluid">
+								<div class="span8">
+									<strong>Average Badges Per Minute:</strong>
+								</div>
+								<div class="span4">
+									{{currentSiteInfo.badges_per_minute}}
+								</div>
+							</div>
+							<div class="row-fluid">
+								<div class="span8">
+									<strong>New Active Users:</strong>
+								</div>
+								<div class="span4">
+									{{currentSiteInfo.new_active_users}}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>

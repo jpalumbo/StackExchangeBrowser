@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" ng-app="stackExchangeApplication" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <title>Stack Exchange Site Browser</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/scripts/angular/angular.js"></script>
+	<script src="/scripts/angular/angular-resource.js"></script>
+	<script src="/scripts/bootstrap/bootstrap.js"></script>
+	<script src="http://angular-ui.github.com/bootstrap/ui-bootstrap-tpls-0.2.0.js"></script>
+	<script src="/scripts/applications/stackExchangeApp.js"></script>
+	<script src="/scripts/services/stackExchangeService.js"></script>
+	<script src="/scripts/services/stackExchangeResolvers.js"></script>
+	<script src="/scripts/controllers/stackExchangeController.js"></script>
+    <script src="/scripts/controllers/stackExchangeSitesController.js"></script>
+    <script src="/scripts/controllers/stackExchangeSiteDetailController.js"></script>
+    <script src="/scripts/filters/capitalizeFilter.js"></script>
+    <script src="/scripts/routes/stackExchangeRoutes.js"></script>
+	<style>
+		.pagination{
+			margin: 0px 0px;
+
+		}
+		.answered a:link{
+			color:#499249;
+
+		}
+		.unanswered{
+			color:#a2a2a2;
+
+		}
+
+	</style>
+</head>
+<body ng-controller="stackExchangeBaseController">
+<div ng-view></div>
+</body>
+</html>
