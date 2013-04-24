@@ -10,7 +10,7 @@ stackExchangeApplication.controller('stackExchangeSitesController', function ($s
 	$scope.loadDetailView = function (index) {
 		$rootScope.currentSite = $scope.sitesCollection[index];
 		console.dir($location);console.dir($routeParams);
-		$location.path('/site/' + $scope.sitesCollection[index].api_site_parameter).replace();
+		$location.path('/site/' + $scope.sitesCollection[index].api_site_parameter);
 	};
 
 	$scope.pageSize_OnChange = function () {
