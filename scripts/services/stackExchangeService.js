@@ -100,8 +100,6 @@ stackExchangeApplication.factory('StackExchangeService', function ($resource, $c
 				cache.put(cacheKey, questions);
 			}
 
-			console.log(questions);
-
 			return questions;
         }
     }

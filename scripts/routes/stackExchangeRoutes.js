@@ -11,6 +11,15 @@ stackExchangeApplication.config(['$routeProvider', function ($routeProvider) {
 		}
 	});
 
+	$routeProvider.when('/page/:pageNum', {
+		reloadOnSearch: false,
+		templateUrl: 'partials/sites.html',
+		controller: 'stackExchangeSitesController',
+		resolve: {
+			sites: sitesResolver
+		}
+	});
+
 	$routeProvider.when('/site/:siteName', {
 		templateUrl: 'partials/site-detail.html',
 		controller: 'stackExchangeSiteDetailController',

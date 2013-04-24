@@ -4,42 +4,43 @@ stackExchangeApplication.controller('stackExchangeSitesController', function ($s
 	$scope.siteCount = sites.total;
 	$scope.pageSize = 25;
 	$scope.noOfPages = calculatePageCount();
-	$scope.currentPageNo = 1;
-	$location.search('page', 1);
+	$scope.currentPageNum = 1;
+
 
 	$scope.loadDetailView = function (index) {
 		$rootScope.currentSite = $scope.sitesCollection[index];
-		$location.path('/site/' + $scope.sitesCollection[index].api_site_parameter);
+		console.dir($location);console.dir($routeParams);
+		$location.path('/site/' + $scope.sitesCollection[index].api_site_parameter).replace();
 	};
 
 	$scope.pageSize_OnChange = function () {
 		$scope.noOfPages = calculatePageCount();
-		$scope.currentPageNo = 1;
-		$location.search('page', 1);
+		$scope.currentPageNum = 1;
+
 	};
 
-
-	$scope.$watch('currentPageNo', function (newValue, oldValue) {
+	$scope.$watch('currentPageNum', function (newValue, oldValue) {
 		if (newValue !== oldValue) {
 
-			StackExchangeService.getSites($scope.pageSize, newValue).$then(function (response) {
-				$scope.sitesCollection = response.data.items;
-			});
 
 			if(!isNaN(newValue)){
-				$location.search('page', newValue);
+				$location.path("/page/" + newValue);
+
 			}
 		}
 	});
 
-	$scope.$on("$routeUpdate", function(event){
+	$scope.$on("$routeChangeSuccess", function(event){
+		var pageNum = +$routeParams.pageNum;
 
-		if($routeParams.page && $scope.currentPageNo !== +$routeParams.page){
-			$scope.currentPageNo =  +$routeParams.page;
+		if(pageNum && $scope.currentPageNum !== pageNum){
+			$scope.currentPageNum = pageNum;
+
+			StackExchangeService.getSites($scope.pageSize, $scope.currentPageNum).$then(function (response) {
+				$scope.sitesCollection = response.data.items;
+			});
 		}
-		console.log($scope.currentPageNo);
 	});
-
 
 	$scope.formatDate = function (ticks) {
 		return (ticks) ? dateFilter(new Date(0).setUTCSeconds(ticks), 'M/d/yy h:mm:ss a') : '';
