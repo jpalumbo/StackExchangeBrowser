@@ -11,11 +11,11 @@
 					<div class="span7">
 						<div ng-repeat="question in questions">
 							<h4 ng-class="{'answered':question.is_answered, 'unanswered':!question.is_answered}">
-							    <a href="#/site/{{siteName}}/question/{{question.question_id}}">
+								<a href="#/site/{{siteName}}/question/{{question.question_id}}">
 									<span ng-switch on="question.is_answered">
 									<i ng-switch-when="true" class="icon-ok"></i>
 								</span>
-								<span ng-bind-html-unsafe="question.title">{{question.title}}</span>
+									<span ng-bind-html-unsafe="question.title">{{question.title}}</span>
 								</a>
 							</h4>
 
@@ -34,7 +34,15 @@
 
 					</div>
 					<div class="span5">
+
 						<div style=" padding: 1em">
+							<div ng-show="tags.length > 0">
+								<h4>Current Tags</h4>
+						    <span class="label label-success" ng-repeat="tag in tags"
+								  style="margin-right: 5px;" ng-click="removeTag(tag)">
+								<i class="icon-tag icon-white"> </i> {{tag}}</span></a>
+							</div>
+
 							<h4>{{currentSite.name}} Statistics</h4>
 
 							<div class="row-fluid">

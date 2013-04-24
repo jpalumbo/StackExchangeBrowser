@@ -1,7 +1,7 @@
 stackExchangeApplication.controller('stackExchangeSiteDetailController', function ($scope, $rootScope, $routeParams, dateFilter, siteInfo, questions, StackExchangeService) {
     
     $scope.currentSiteInfo = siteInfo[0];
-	$scope.siteName= $routeParams.siteName
+	$scope.siteName = $routeParams.siteName;
 	$scope.questions = questions;
 	$scope.tags = [];
 
@@ -10,14 +10,28 @@ stackExchangeApplication.controller('stackExchangeSiteDetailController', functio
 		return (seconds) ? dateFilter(new Date(0).setUTCSeconds(seconds), 'M/d/yy h:mm:ss a') : '';
 	};
 
+
+
 	$scope.addTag = function(tag){
-		$scope.tags.push(tag);
+		var index = $scope.tags.indexOf(tag);
+		if(index === -1){
+			$scope.tags.push(tag);
+		}
+	};
 
-		StackExchangeService.getSiteQuestions($routeParams.siteName, 'creation', 'desc', $scope.tags).$then(function(response){
-			$scope.questions = response.data.items
-		});
+	$scope.removeTag = function(tag){
+		var index = $scope.tags.indexOf(tag);
+		if(index !== -1){
+			$scope.tags.splice(index, 1);
+		}
+	};
 
-		console.log($scope.questions);
-	}
+	$scope.$watch('tags', function(newValue, oldValue){
+		if(newValue !== oldValue){
+			StackExchangeService.getSiteQuestions($routeParams.siteName, 'creation', 'desc', $scope.tags).$then(function(response){
+				$scope.questions = response.data.items
+			});
+		}
+	}, true);
 
 });

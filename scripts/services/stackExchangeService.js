@@ -4,9 +4,9 @@ stackExchangeApplication.factory('StackExchangeService', function ($resource, $c
         apiKey = 'U4DMV*8nvpm3EOpvf69Rxw((';
     // cache store 
     cache = $cacheFactory('StackExchangeService'),
-    pageFilter = '!9hnGsxUjS';
-    totalFilter = '!9hnGt)DrA';
-    pageAndTotalFilter = '!-.mgWMrj9PVd';
+    pageFilter = '!9hnGsxUjS',
+    totalFilter = '!9hnGt)DrA',
+    pageAndTotalFilter = '!-.mgWMrj9PVd',
 
 	// sites resource definitions
     SitesResource = $resource(apiLocation + 'sites', { callback: 'JSON_CALLBACK' }, { query: { method: 'JSONP' } }),
@@ -99,6 +99,8 @@ stackExchangeApplication.factory('StackExchangeService', function ($resource, $c
 				questions = SiteQuestionsResource.query(parameters);
 				cache.put(cacheKey, questions);
 			}
+
+			console.log(questions);
 
 			return questions;
         }
